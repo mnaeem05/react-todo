@@ -20,13 +20,12 @@ class TodoItems extends React.Component {
   render() {
     var todoEntries = this.props.entries;
     var listItems = todoEntries.map(this.createTasks);
- 
     return (
-      <ul className="theList">
+      <li className="theList">
       <ol title="Delete this task?">
         {listItems}
         </ol>
-      </ul>
+      </li>
     );
   }
 };
