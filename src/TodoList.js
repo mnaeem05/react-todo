@@ -12,7 +12,8 @@ class TodoList extends React.Component {
     items: []
   };
     this.addItem = this.addItem.bind(this);
-     this.deleteItem = this.deleteItem.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
+    this.ref = firebase.database().ref();
   }
 
 deleteItem(key) {
