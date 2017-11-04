@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import TodoItems from './TodoItems';
 import './TodoList.css';
+import * as firebase from 'firebase';
+import './fbconfig'
 
  
 class TodoList extends React.Component {
@@ -58,7 +60,7 @@ deleteItem(key) {
     <div className="todoListMain">
       <div className="header">
       <h2> Todo List</h2>
-        <form onSubmit={this.addItem}>
+        <form onSubmit={this.addItem.bind(this)}>
           <input ref={(a) => this._inputElement = a}
                     required 
                   placeholder="Enter task">
