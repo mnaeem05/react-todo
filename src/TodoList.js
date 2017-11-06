@@ -11,9 +11,9 @@ class TodoList extends React.Component {
   this.state = {
     items: []
   };
+    this.ref = firebase.database().ref();  
     this.addItem = this.addItem.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
-    this.ref = firebase.database().ref();
   }
 
 deleteItem(key) {
@@ -27,6 +27,7 @@ deleteItem(key) {
 }
 
   addItem(e) {
+    e.preventDefault()
   var itemArray = this.state.items;
  
   if (this._inputElement.value !== "") {
@@ -42,11 +43,14 @@ deleteItem(key) {
     });
  
     this._inputElement.value = "";
-  }
- 
-   
-  e.preventDefault();
+  }  
+  this.sendToFirebase()
 }
+  sendToFirebase() {
+    console.log(this.state.items)
+      this.ref.child("users").push({ list: this.state.items});
+  }
+
 deleteItem(key) {
   var filteredItems = this.state.items.filter(function (item) {
     return (item.key !== key);
